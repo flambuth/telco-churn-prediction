@@ -49,18 +49,18 @@ import acquire
 
 
 # Create a function named prep_titanic that accepts the untransformed titanic data, and returns the data with the transformations above applied.
-def prep_titanic():
-    df_titanic = acquire.get_titanic_data()
-    df_titanic.embark_town.fillna('Other', inplace=True)
-    df_titanic.embarked.fillna('Unknown', inplace=True)
-    df_titanic.drop('deck', inplace=True, axis=1)
-    lab_enc = LabelEncoder()
-    lab_enc.fit(df_titanic.embarked)
-    df_titanic.embarked = lab_enc.transform(df_titanic.embarked)
-    scaler = MinMaxScaler()
-    scaler.fit(df_titanic[['fare','age']])
-    df_titanic.fare = scaler.transform(df_titanic[['fare', 'age']])
-    return df_titanic
+# def prep_titanic():
+#     df_titanic = acquire.get_titanic_data()
+#     df_titanic.embark_town.fillna('Other', inplace=True)
+#     df_titanic.embarked.fillna('Unknown', inplace=True)
+#     df_titanic.drop('deck', inplace=True, axis=1)
+#     lab_enc = LabelEncoder()
+#     lab_enc.fit(df_titanic.embarked)
+#     df_titanic.embarked = lab_enc.transform(df_titanic.embarked)
+#     scaler = MinMaxScaler()
+#     scaler.fit(df_titanic[['fare','age']])
+#     df_titanic.fare = scaler.transform(df_titanic[['fare', 'age']])
+#     return df_titanic
 
 
 #USE df.nunique()<5 instead of this temp list
@@ -82,10 +82,18 @@ def prep_titanic():
 #         ax[i].set_ylabel('average_rate')
 #         ax[i].axhline(average_rate, ls='--', color='grey')
 
-def pick_viable_regressors():
-    regressors = df_titanic.select_dtypes(include=['float64','int64'])
+# def pick_viable_regressors():
+#     regressors = df_titanic.select_dtypes(include=['float64','int64'])
+#     temp = []
+#     for column in regressors:
+#         columnSeriesObj = regressors[column]
+#         temp.append(columnSeriesObj.name)
+#     return temp
+
+def pick_numerical_columns(df):
+    cont_cols = df.select_dtypes(include=['float64','int64'])
     temp = []
-    for column in regressors:
-        columnSeriesObj = regressors[column]
+    for column in cont_cols:
+        columnSeriesObj = cont_cols[column]
         temp.append(columnSeriesObj.name)
     return temp
