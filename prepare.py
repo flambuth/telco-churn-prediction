@@ -4,18 +4,43 @@ import pandas as pd
 # Import visualization modules
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder, Imputer
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import LabelEncoder #OneHotEncoder, Imputer
+#from sklearn.preprocessing import MinMaxScaler
 
 import acquire
 
+def encode_variable(column, df):
+    lab_enc = LabelEncoder()
+    lab_enc.fit(df[column])
+    df[column] = lab_enc.transform(df[column])
+
 def prep_telco():
     df = acquire.get_telco_chunk()
-    df['churn'] = df['churn'].replace({'Yes':1,'No':0})
+    df = df.set_index('customer_id')
+#    df['churn'] = df['churn'].replace({'Yes':1,'No':0})
+#    df['partner'] = df['partner'].replace({'Yes':1,'No':0})
+#    df['dependents'] = df['dependents'].replace({'Yes':1,'No':0})
+#    df['gender'] = df['gender'].replace({'Male':1,'Female':0})
     df['total_charges'] = df.total_charges.replace(' ', '0')
     df['total_charges'] = df.total_charges.astype('float')
+    # encode_variable('online_backup')
+    # encode_variable('online_backup')
+    # encode_variable('online_backup')
+    # encode_variable('online_backup')
+    # encode_variable('online_backup')
+
+    # df.online_backup = lab_enc.transform(df.online_backup)
+    # df.device_protection = lab_enc.transform(df.device_protection)
+    # df.tech_support = lab_enc.transform(df.tech_support)
+    # df.streaming_tv = lab_enc.transform(df.streaming_tv)
+    # df.streaming_movies = lab_enc.transform(df.streaming_movies)
+    # df.paperless_billing = lab_enc.transform(df.paperless_billing)
     return df
 
+def encode_variable(column):
+    lab_enc = LabelEncoder()
+    lab_enc.fit(df[column])
+    df[column] = lab_enc.transform(df[column])
 
 
 # Titanic Data
