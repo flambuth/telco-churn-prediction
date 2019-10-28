@@ -9,6 +9,15 @@ from sklearn.preprocessing import MinMaxScaler
 
 import acquire
 
+def prep_telco():
+    df = acquire.get_telco_chunk()
+    df['churn'] = df['churn'].replace({'Yes':1,'No':0})
+    df['total_charges'] = df.total_charges.replace(' ', '0')
+    df['total_charges'] = df.total_charges.astype('float')
+    return df
+
+
+
 # Titanic Data
 
 # # Use the function you defined in acquire.py to load the titanic data set.
