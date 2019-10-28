@@ -188,3 +188,21 @@ def get_telco_chunk():
 #     df = pd.read_sql(query_6111, get_db_url('zillow'))
 #     df = df.dropna()
 #     return df
+
+SELECT * 
+FROM customers
+WHERE `contract_type_id` = 1 
+AND `tenure` = 12 
+;
+
+def get_month2month():
+    query = '''
+    SELECT 
+    *
+    FROM 
+    customers
+    WHERE contract_type_id = 1
+    AND tenure = 12
+    ;
+    '''
+    df = pd.read_sql(query, get_db_url('telco_churn'))
