@@ -9,10 +9,10 @@ from sklearn.preprocessing import LabelEncoder #OneHotEncoder, Imputer
 
 import acquire
 
-def encode_variable(column, df):
-    lab_enc = LabelEncoder()
-    lab_enc.fit(df[column])
-    df[column] = lab_enc.transform(df[column])
+# def encode_variable(column, df):
+#     lab_enc = LabelEncoder()
+#     lab_enc.fit(df[column])
+#     df[column] = lab_enc.transform(df[column])
 
 def prep_telco():
     df = acquire.get_telco_chunk()
@@ -23,11 +23,20 @@ def prep_telco():
 #    df['gender'] = df['gender'].replace({'Male':1,'Female':0})
     df['total_charges'] = df.total_charges.replace(' ', '0')
     df['total_charges'] = df.total_charges.astype('float')
+    # encode_variable('online_security', df)
     # encode_variable('online_backup')
-    # encode_variable('online_backup')
-    # encode_variable('online_backup')
-    # encode_variable('online_backup')
-    # encode_variable('online_backup')
+    # encode_variable('paperless_billing')
+    # encode_variable('tech_support')
+    # encode_variable('streaming_movies')
+    # encode_variable('streaming_tv')
+    # encode_variable('churn')
+    # encode_variable('partner')
+    # encode_variable('dependents')
+    # encode_variable('gender')
+    # encode_variable('phone_service')
+    # encode_variable('multiple_lines')
+    # encode_variable('device_protection')
+
 
     # df.online_backup = lab_enc.transform(df.online_backup)
     # df.device_protection = lab_enc.transform(df.device_protection)
@@ -37,10 +46,10 @@ def prep_telco():
     # df.paperless_billing = lab_enc.transform(df.paperless_billing)
     return df
 
-def encode_variable(column):
-    lab_enc = LabelEncoder()
-    lab_enc.fit(df[column])
-    df[column] = lab_enc.transform(df[column])
+# def encode_variable(column):
+#     lab_enc = LabelEncoder()
+#     lab_enc.fit(df[column])
+#     df[column] = lab_enc.transform(df[column])
 
 
 # Titanic Data
