@@ -9,64 +9,33 @@ from sklearn.preprocessing import MinMaxScaler
 
 import acquire
 
-# Iris Data
-
-# Use the function defined in acquire.py to load the iris data.
-df_iris = acquire.get_iris_data()
-
-# Drop the species_id and measurement_id columns.
-df_iris.drop(['species_id','measurement_id'],inplace=True,axis=1)
-
-# Rename the species_name column to just species.
-df_iris = df_iris.rename(columns={"species_name": "species"})
-
-# Encode the species name using a sklearn label encoder. 
-# Research the inverse_transform method of the label encoder. How might this be useful?
-labelencoder = LabelEncoder()
-labelencoder.fit(df_iris.species)
-df_iris.species = labelencoder.transform(df_iris.species)
-
-# Create a function named prep_iris that accepts the untransformed iris data, and returns 
-# the data with the transformations above applied.
-
-def prep_iris():
-    df_iris = acquire.get_iris_data()
-    df_iris.drop(['species_id','measurement_id'],inplace=True,axis=1)
-    df_iris = df_iris.rename(columns={"species_name": "species"})
-
-    labelencoder = LabelEncoder()
-    labelencoder.fit(df_iris.species)
-    df_iris.species = labelencoder.transform(df_iris.species)
-    return df_iris
-
-
 # Titanic Data
 
-# Use the function you defined in acquire.py to load the titanic data set.
-df_titanic = acquire.get_titanic_data()
+# # Use the function you defined in acquire.py to load the titanic data set.
+# df_titanic = acquire.get_titanic_data()
 
-# Handle the missing values in the embark_town and embarked columns.
-df_titanic.embark_town.fillna('Other', inplace=True)
+# # Handle the missing values in the embark_town and embarked columns.
+# df_titanic.embark_town.fillna('Other', inplace=True)
 
-# Remove the deck column.
-df_titanic.drop('deck', inplace=True, axis=1)
+# # Remove the deck column.
+# df_titanic.drop('deck', inplace=True, axis=1)
 
-# Use a label encoder to transform the embarked column.
-lab_enc = LabelEncoder()
-df_titanic.embarked.fillna('Unknown', inplace=True)
-lab_enc.fit(df_titanic.embarked)
-df_titanic.embarked = lab_enc.transform(df_titanic.embarked)
+# # Use a label encoder to transform the embarked column.
+# lab_enc = LabelEncoder()
+# df_titanic.embarked.fillna('Unknown', inplace=True)
+# lab_enc.fit(df_titanic.embarked)
+# df_titanic.embarked = lab_enc.transform(df_titanic.embarked)
 
-# Scale the age and fare columns using a min max scaler. Why might this be beneficial? When might you not want to do this?
-scaler = MinMaxScaler()
-scaler2 = MinMaxScaler()
+# # Scale the age and fare columns using a min max scaler. Why might this be beneficial? When might you not want to do this?
+# scaler = MinMaxScaler()
+# scaler2 = MinMaxScaler()
 
-# Would this work if it just included both ['fare','age'] in the fit or transform command?
-scaler.fit(df_titanic[['fare']])
-df_titanic.fare = scaler.transform(df_titanic[['fare']])
+# # Would this work if it just included both ['fare','age'] in the fit or transform command?
+# scaler.fit(df_titanic[['fare']])
+# df_titanic.fare = scaler.transform(df_titanic[['fare']])
 
-scaler2.fit(df_titanic[['age']])
-df_titanic.age = scaler.transform(df_titanic[['age']])
+# scaler2.fit(df_titanic[['age']])
+# df_titanic.age = scaler.transform(df_titanic[['age']])
 
 #I'd like to add an imputation of something into the age column. It has some null values.
 # def impute_titanic_age():
@@ -113,10 +82,10 @@ def prep_titanic():
 #         ax[i].set_ylabel('average_rate')
 #         ax[i].axhline(average_rate, ls='--', color='grey')
 
-# def pick_viable_regressors():
-#     regressors = df_titanic.select_dtypes(include=['float64','int64'])
-#     temp = []
-#     for column in regressors:
-#         columnSeriesObj = regressors[column]
-#         temp.append(columnSeriesObj.name)
-#     return temp
+def pick_viable_regressors():
+    regressors = df_titanic.select_dtypes(include=['float64','int64'])
+    temp = []
+    for column in regressors:
+        columnSeriesObj = regressors[column]
+        temp.append(columnSeriesObj.name)
+    return temp
