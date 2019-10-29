@@ -1,3 +1,8 @@
+
+GOOGLE SLIDES PRESENTATION:
+https://docs.google.com/presentation/d/18FF9wCYYBQddnWE13nFPW5eHJjL9hJGlW5lrbHkOmwI/edit?usp=sharing
+
+
 jupyter notebook where your work takes place that will be delivered to others to read as a report.
 
 csv file that predicts churn for each customer
