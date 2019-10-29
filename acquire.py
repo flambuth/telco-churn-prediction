@@ -21,6 +21,32 @@ def get_telco_chunk():
     df = pd.read_sql(query, get_db_url('telco_churn'))
     return df
 
+def get_month2month():
+    query = '''
+    SELECT 
+    *
+    FROM 
+    customers
+    WHERE contract_type_id = 1
+    AND tenure = 12
+    ;
+    '''
+    df = pd.read_sql(query, get_db_url('telco_churn'))
+    return df
+
+def get_1year():
+    query = '''
+    SELECT 
+    *
+    FROM 
+    customers
+    WHERE contract_type_id = 2
+    AND tenure = 12
+    ;
+    '''
+    df = pd.read_sql(query, get_db_url('telco_churn'))
+    return df
+
 # def get_zillow_bite():
 #     query = '''
 #     SELECT 
@@ -189,20 +215,20 @@ def get_telco_chunk():
 #     df = df.dropna()
 #     return df
 
-SELECT * 
-FROM customers
-WHERE `contract_type_id` = 1 
-AND `tenure` = 12 
-;
+# SELECT * 
+# FROM customers
+# WHERE `contract_type_id` = 1 
+# AND `tenure` = 12 
+# ;
 
-def get_month2month():
-    query = '''
-    SELECT 
-    *
-    FROM 
-    customers
-    WHERE contract_type_id = 1
-    AND tenure = 12
-    ;
-    '''
-    df = pd.read_sql(query, get_db_url('telco_churn'))
+# def get_month2month():
+#     query = '''
+#     SELECT 
+#     *
+#     FROM 
+#     customers
+#     WHERE contract_type_id = 1
+#     AND tenure = 12
+#     ;
+#     '''
+#     df = pd.read_sql(query, get_db_url('telco_churn'))
