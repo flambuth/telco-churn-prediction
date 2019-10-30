@@ -1,7 +1,7 @@
-#Le jambon c'est un viande bonne
+
 import numpy as np
 import pandas as pd
-# Import visualization modules
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import LabelEncoder #OneHotEncoder, Imputer
