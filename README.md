@@ -22,6 +22,8 @@ model.py
 mvp.ipynb (Jupyter Notebook)
 
 Running the model
+Notebook:
 The mvp.ipynb should be executed  cell by cell to show the data analysis process.
 
- There is an additional presentation file with plain english conclusions derived from our analysis.
+Script:
+The product.py is a script that will pull the information from the database and calculate the predicted classes and probabilities of those predictions.
